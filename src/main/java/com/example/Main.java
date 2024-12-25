@@ -20,7 +20,7 @@ public class Main {
             saveToCsv(shopName + "_res.csv", aggregatedProducts);
         }
     }
-    private static List<CsvProduct> parseCsv(String filePath) throws IOException {
+    public static List<CsvProduct> parseCsv(String filePath) throws IOException {
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(filePath))) {
             return reader.lines()
                     .skip(1)
@@ -28,11 +28,11 @@ public class Main {
                     .collect(Collectors.toList());
         }
     }
-    private static CsvProduct mapToProduct(String line) {
+    public static CsvProduct mapToProduct(String line) {
         String[] fields = line.split(";");
         return new CsvProduct(fields[0], fields[1], Double.parseDouble(fields[2]), Integer.parseInt(fields[3]));
     }
-    private static List<CsvProduct> aggregateProducts(List<CsvProduct> products) {
+    public static List<CsvProduct> aggregateProducts(List<CsvProduct> products) {
         return products.stream()
                 .collect(Collectors.groupingBy(CsvProduct::getName))
                 .entrySet().stream()

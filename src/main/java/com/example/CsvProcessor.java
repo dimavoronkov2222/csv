@@ -35,7 +35,7 @@ public class CsvProcessor {
         String[] fields = line.split(";");
         return new Product(fields[0], fields[1], Double.parseDouble(fields[2]), Integer.parseInt(fields[3]));
     }
-    private static List<Product> aggregateProducts(List<Product> products) {
+    public static List<Product> aggregateProducts(List<Product> products) {
         return products.stream()
                 .collect(Collectors.groupingBy(Product::getName))
                 .entrySet().stream()
